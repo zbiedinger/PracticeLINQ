@@ -17,9 +17,11 @@ namespace PracticeProblemsLINQ
         public static List<string> RunProblem1(List<string> words)
         {
             //code
+            List<string> th_Words = words.FindAll(w => w.Contains("th"));
+
 
             //return
-
+            return th_Words;
         }
         #endregion
 
@@ -29,9 +31,14 @@ namespace PracticeProblemsLINQ
         public static List<string> RunProblem2(List<string> names)
         {
             //code
+            List<string> name1 = names.GroupBy(n => n).Where(n => n.Count() == 1).Select(n => n.Key).ToList();
+
+            List<string> name2 = names.GroupBy(n => n).Where(n => n.Count() > 1).Select(n => n.Key).ToList();
+
+            List<string> duplicate_Free = name1.Concat(name2).ToList();
 
             //return
-
+            return duplicate_Free;
         }
         #endregion
 
@@ -41,9 +48,11 @@ namespace PracticeProblemsLINQ
         public static Customer RunProblem3(List<Customer> customers)
         {
             //code
+            Customer name_mike = customers.Find(c => c.FirstName == "Mike");
+
 
             //return
-
+            return name_mike;
         }
         #endregion
 
@@ -54,9 +63,13 @@ namespace PracticeProblemsLINQ
         public static Customer RunProblem4(List<Customer> customers)
         {
             //code
+            Customer updated_customer = customers.Find(c => c.Id == 3);
+
+            updated_customer.FirstName = "John";
+            updated_customer.LastName = "Smith";
 
             //return
-
+            return updated_customer;
         }
         #endregion
 
@@ -71,21 +84,22 @@ namespace PracticeProblemsLINQ
             //code
 
             //return
-
+            return 42;
         }
         #endregion
 
-        #region Bonus Problem 1
-        //(5 points) Bonus Problem 1
-        //Write a method that takes in a string of letters(i.e. “Terrill”) 
-        //and returns an alphabetically ordered string corresponding to the letter frequency(i.e. "E1I1L2R2T1")
-        public static string RunBonusProblem1(string word)
-        {
-            //code
+        //    #region Bonus Problem 1
+        //    //(5 points) Bonus Problem 1
+        //    //Write a method that takes in a string of letters(i.e. “Terrill”) 
+        //    //and returns an alphabetically ordered string corresponding to the letter frequency(i.e. "E1I1L2R2T1")
+        //    public static string RunBonusProblem1(string word)
+        //    {
+        //        //code
 
-            //return
+        //        //return
 
-        }
-        #endregion
+        //    }
+        //    #endregion
+
     }
 }
