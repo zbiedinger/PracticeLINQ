@@ -82,9 +82,22 @@ namespace PracticeProblemsLINQ
         public static double RunProblem5(List<string> classGrades)
         {
             //code
+            List<double> studentGrades = new List<double>();
+            List<double> classTotalGrades = new List<double>();
+            int count = classGrades.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                studentGrades = classGrades.First().Split(',').Select(n => Convert.ToDouble(n)).ToList();
+                studentGrades.Remove(studentGrades.Min());
+                classTotalGrades.AddRange(studentGrades);
+                
+                classGrades.Remove(classGrades.First());
+            }
+            double classGrade = classTotalGrades.Average();
 
             //return
-            return 42;
+            return classGrade;
         }
         #endregion
 
