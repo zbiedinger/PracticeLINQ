@@ -19,6 +19,8 @@ namespace PracticeProblemsLINQ
             //code
             List<string> th_Words = words.FindAll(w => w.Contains("th"));
 
+            //Another option from feedback
+            //List<string> th_Words = words.Where(w => w.Contains("th")).ToList();
 
             //return
             return th_Words;
@@ -37,6 +39,10 @@ namespace PracticeProblemsLINQ
 
             List<string> duplicate_Free = name1.Concat(name2).ToList();
 
+
+            //Another option from feedback
+            //List<string> duplicate_Free = names.Distinct().ToList();
+
             //return
             return duplicate_Free;
         }
@@ -50,6 +56,10 @@ namespace PracticeProblemsLINQ
             //code
             Customer name_mike = customers.Find(c => c.FirstName == "Mike");
 
+            ////Another option from feedback
+            //Customer name_mike = customers.FirstOrDefault(c => c.FirstName == "Mike");
+            ////or this sinse there is only 1 mike
+            //Customer name_mike = customers.SingleOrDefault(c => c.FirstName == "Mike");
 
             //return
             return name_mike;
@@ -91,28 +101,48 @@ namespace PracticeProblemsLINQ
                 studentGrades = classGrades.First().Split(',').Select(n => Convert.ToDouble(n)).ToList();
                 studentGrades.Remove(studentGrades.Min());
                 classTotalGrades.AddRange(studentGrades);
-                
+
                 classGrades.Remove(classGrades.First());
             }
             double classGrade = classTotalGrades.Average();
+
+            ////Another option from feedback
+            //var results = classGrades.Select(a => a.Split(',').Select(double.Parse).OrderBy(x => x).Skip(1).Average()).ToList();
+            //double classGrade = results.Average();
 
             //return
             return classGrade;
         }
         #endregion
 
-        //    #region Bonus Problem 1
-        //    //(5 points) Bonus Problem 1
-        //    //Write a method that takes in a string of letters(i.e. “Terrill”) 
-        //    //and returns an alphabetically ordered string corresponding to the letter frequency(i.e. "E1I1L2R2T1")
-        //    public static string RunBonusProblem1(string word)
-        //    {
-        //        //code
+        #region Bonus Problem 1
+        //(5 points) Bonus Problem 1
+        //Write a method that takes in a string of letters(i.e. “Terrill”) 
+        //and returns an alphabetically ordered string corresponding to the letter frequency(i.e. "E1I1L2R2T1")
+        public static string RunBonusProblem1(string word)
+        {
+            //code
+            var frequency = from f in word
+                            group f by f into letterfrequency
+                            orderby letterfrequency.Key
+                            select
+                            (
+                                Letter: letterfrequency.Key,
+                                Frequency: letterfrequency.Count()
+                            );
 
-        //        //return
 
-        //    }
-        //    #endregion
+            string organtizedWord = null;
+            foreach (var (Letter, Frequency) in frequency)
+            {
+                organtizedWord += Letter;
+                organtizedWord += Frequency;
+            }
+
+            //return
+            return organtizedWord;
+        }
+        #endregion
 
     }
 }

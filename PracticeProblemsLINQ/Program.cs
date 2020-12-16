@@ -48,11 +48,11 @@ namespace PracticeProblemsLINQ
             double aveGrade = LinqProblems.RunProblem5(classGrades);
 
 
-            ////--------------------
-            ////Bonus Problem 1
-            //string letters = "terrill";
+            //--------------------
+            //Bonus Problem 1
+            string letters = "terrill";
 
-            //string arriangedLetter = LinqProblems.RunBonusProblem1(letters);
+            string arriangedLetter = LinqProblems.RunBonusProblem1(letters);
 
         }
     }
